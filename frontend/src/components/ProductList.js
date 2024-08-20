@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function ProductList() {
@@ -6,8 +6,12 @@ function ProductList() {
 
   useEffect(() => {
     axios.get('http://localhost:5000/api/products')
-      .then(response => setProducts(response.data))
-      .catch(error => console.error(error));
+      .then(response => {
+        setProducts(response.data);
+      })
+      .catch(error => {
+        console.error('There was an error fetching the products!', error);
+      });
   }, []);
 
   return (
